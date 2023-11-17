@@ -27187,7 +27187,8 @@ const MainView = ()=>{
                 "Animation, ",
                 "Adventure, ",
                 "Family"
-            ]
+            ],
+            description: "A young boy and a girl with a magic crystal must race against pirates and foreign agents in a search for a legendary floating castle."
         },
         {
             id: 2,
@@ -27198,7 +27199,8 @@ const MainView = ()=>{
                 "Animation, ",
                 "Comedy, ",
                 "Family"
-            ]
+            ],
+            description: "When two girls move to the country to be near their ailing mother, they have adventures with the wondrous forest spirits who live nearby."
         },
         {
             id: 3,
@@ -27209,7 +27211,8 @@ const MainView = ()=>{
                 "Animation, ",
                 "Fantasy, ",
                 "Family"
-            ]
+            ],
+            description: "A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service."
         }
     ]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
@@ -27218,14 +27221,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 40,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 45,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27236,16 +27239,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 48,
+                lineNumber: 51,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 46,
+        lineNumber: 49,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "2s1c+aI6enrFVRghyWbZhpckYE0=");
+_s(MainView, "2ePahN9mnEP/+iKghKqG7QMides=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27548,12 +27551,34 @@ const MovieView = ({ movie, onBackClick })=>{
                 lineNumber: 15,
                 columnNumber: 9
             }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Description: "
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 20,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: movie.description
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 21,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 19,
+                columnNumber: 9
+            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 onClick: onBackClick,
                 children: "Back"
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 19,
+                lineNumber: 23,
                 columnNumber: 9
             }, undefined)
         ]
