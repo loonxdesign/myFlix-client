@@ -9,6 +9,10 @@ export const MovieView = ({ movie, onBackClick }) => {
           <span>{movie.title}</span>
         </div>
         <div>
+          <span>Year: </span>
+          <span>{movie.year}</span>
+        </div>
+        <div>
           <span>Director: </span>
           <span>{movie.director}</span>
         </div>
