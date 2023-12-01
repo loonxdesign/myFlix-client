@@ -1,36 +1,41 @@
-import { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+import { useState, useEffect } from 'react';
+import { MovieCard } from '../movie-card/movie-card';
+import { MovieView } from '../movie-view/movie-view';
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
 
   useEffect(() => {
-    fetch("https://ghib-lix-e94c670e9f28.herokuapp.com/")
+    fetch('https://ghib-lix-e94c670e9f28.herokuapp.com/movies')
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.docs.map((doc) => {
+        const moviesFromApi = data.map((movie) => {
           return {
-            id: doc.key,
-            title: doc.title,
-            image:
-"",
-            year: doc.year,
-            director: doc.director_name?.[0],
-            genres: doc.genres_name,
-
+            id: movie._id,
+            title: movie.title,
+            imagePath: movie.imagePath,
+            Description: movie.Description,
+            Year: movie.Year,
+            Genres: {Name: movie.Genres.Name},
+            Director: {
+              Name: movie.Director.Name,
+            },
           };
+        });
+        console.log("movies", moviesFromApi);
+
+        setMovies(moviesFromApi);
       });
-
-        setBooks(moviesFromApi);
-    });
   }, []);
-
-  const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {
     return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+      <MovieView
+        movie={selectedMovie}
+        onBackClick={() => setSelectedMovie(null)}
+      />
     );
   }
 
