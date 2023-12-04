@@ -6,7 +6,6 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-
   useEffect(() => {
     fetch('https://ghib-lix-e94c670e9f28.herokuapp.com/movies')
       .then((response) => response.json())
@@ -30,7 +29,7 @@ export const MainView = () => {
             },
           };
         });
-        console.log("movies", moviesFromApi);
+        console.log('movies', moviesFromApi);
 
         setMovies(moviesFromApi);
       });
@@ -38,10 +37,10 @@ export const MainView = () => {
 
   if (selectedMovie) {
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
     );
   }
 
