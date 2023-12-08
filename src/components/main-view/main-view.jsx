@@ -3,6 +3,10 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
+/* importing Bootstrap Components */
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -46,7 +50,7 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (!user) {
+  /* if (!user) {
     return (
       <>
         <LoginView
@@ -116,5 +120,55 @@ export const MainView = () => {
         Logout
       </button>
     </div>
+  ); */
+
+  return (
+    <Row className="justify-content-md-center">
+      {!user ? (
+        <Col md={5}>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }}
+          />
+          or
+          <SignupView />
+        </Col>
+      ) : selectedMovie ? (
+        <Col md={8}>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
+          />
+        </Col>
+      ) : movies.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {movies.map((movie) => (
+            <Col className="mb-5" key={movie.id} md={3}>
+              <MovieCard
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedBook(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ))}
+          <Button
+            className="mb-4"
+            variant="dark"
+            type="logout"
+            onClick={() => {
+              setUser(null);
+              setToken(null);
+            }}
+          >
+            Logout
+          </Button>
+        </>
+      )}
+    </Row>
   );
 };
