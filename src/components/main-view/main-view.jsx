@@ -50,78 +50,6 @@ export const MainView = () => {
       });
   }, [token]);
 
-  /* if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </>
-    );
-  }
-
-  if (selectedMovie) {
-    return (
-      <>
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-          }}
-        >
-          Logout
-        </button>
-      </>
-    );
-  }
-
-  if (movies.length === 0) {
-    return (
-      <>
-        <div>The list is empty!</div>;
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-          }}
-        >
-          Logout
-        </button>
-      </>
-    );
-  }
-
-  return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-        }}
-      >
-        Logout
-      </button>
-    </div>
-  ); */
-
   return (
     <Row className="justify-content-md-center">
       {!user ? (
@@ -151,7 +79,7 @@ export const MainView = () => {
               <MovieCard
                 movie={movie}
                 onMovieClick={(newSelectedMovie) => {
-                  setSelectedBook(newSelectedMovie);
+                  setSelectedMovie(newSelectedMovie);
                 }}
               />
             </Col>
