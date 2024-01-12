@@ -83,7 +83,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
           <Col md={6}>
             <Card>
               <Card.Body>
-                <Card.Title>My Profile</Card.Title>
+                <Card.Title>Current Profile Data</Card.Title>
                 <Card.Text>Username: {user.Username}</Card.Text>
                 <Card.Text>Email: {user.Email}</Card.Text>
                 <Card.Text>Birthday: {user.Birthday}</Card.Text>
