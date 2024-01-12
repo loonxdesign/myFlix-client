@@ -1,7 +1,16 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Container, Nav, Form, Row, Col  } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({
+  user,
+  onLoggedOut,
+  searchQuery,
+  setSearchQuery,
+}) => {
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -23,6 +32,19 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             )}
             {user && (
               <>
+                <Form inline>
+                  <Row>
+                    <Col xs="auto">
+                      <Form.Control
+                        type="text"
+                        placeholder="Search"
+                        className="ms-md-3 me-3 w-75"
+                        value={searchQuery}
+                        onChange={handleSearch}
+                      />
+                    </Col>
+                  </Row>
+                </Form>
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>

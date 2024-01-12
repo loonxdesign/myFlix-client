@@ -81,6 +81,20 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
       <Container>
         <Row className="justify-content-center mt-4">
           <Col md={6}>
+            <Card>
+              <Card.Body>
+                <Card.Title>My Profile</Card.Title>
+                <Card.Text>Username: {user.Username}</Card.Text>
+                <Card.Text>Email: {user.Email}</Card.Text>
+                <Card.Text>Birthday: {user.Birthday}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row className="justify-content-center mt-4">
+          <Col md={6}>
             <h2 className="profile-title">Update info</h2>
             <Form className="my-profile" onSubmit={handleUpdate}>
               <Form.Group className="mt-4 mb-4" controlId="formName">
@@ -138,7 +152,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             </Form>
           </Col>
         </Row>
-      </Container>
+      </Container> 
     </>
   );
 };
@@ -163,19 +177,5 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             );
           })}
         </Row>
-      </Container>
-
-// PART OF RETURN WITH CURRENT USER INFORMATION
-<Col md={4} className="text-center text-md-start ms-3">
-            <Card>
-              <Card.Body>
-                <Card.Title>My Profile</Card.Title>
-                <Card.Text>Username:{user.Username}</Card.Text>
-                <Card.Text>Email: {user.Email}</Card.Text>
-                <Card.Text>
-                  Birthday: {user.Birthday}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-</Col>    
+      </Container>  
 */

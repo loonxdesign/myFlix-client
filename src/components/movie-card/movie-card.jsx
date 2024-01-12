@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const MovieCard = ({ movie }) => {
-  /*
+ /* 
   // FAVORITE MOVIE
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -60,9 +60,10 @@ export const MovieCard = ({ movie }) => {
         alert(error);
       });
   };
-  */
+}
 
-  /* WITH FAV BUTTONS
+
+  WITH FAV BUTTONS
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={book.image} />
@@ -87,8 +88,9 @@ export const MovieCard = ({ movie }) => {
       </Card.Body>
     </Card>
   ); 
-  */
+ */ 
 
+  
   // WITHOUT FAV BUTTONS
   return (
     <Card className="h-100">
@@ -103,6 +105,7 @@ export const MovieCard = ({ movie }) => {
     </Card>
   );
 };
+
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({

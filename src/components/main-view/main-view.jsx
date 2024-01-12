@@ -17,6 +17,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -52,6 +53,12 @@ export const MainView = () => {
       });
   }, [token]);
 
+  const filteredMovies = movies.filter((movie) => {
+    if (searchQuery) {
+      return movie.title.toLowerCase().includes(searchQuery.toLowerCase());
+    }
+  });
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -59,7 +66,12 @@ export const MainView = () => {
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
+          localStorage.clear();
         }}
+        movies={movies}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        filteredMovies={filteredMovies}
       />
       <Row className="justify-content-md-center">
         <Routes>
@@ -120,14 +132,37 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : movies.length === 0 ? (
                   <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
+                ) : searchQuery ? (
+                  <Row>
+                    {filteredMovies.map((movie) => (
+                      <Col
+                        className="mb-4"
+                        key={movie.id}
+                        lg={3}
+                        md={4}
+                        sm={6}
+                        xs={10}
+                      >
+                        <MovieCard
+                          movie={movie}
+                          user={user}
+                          setUser={setUser}
+                        />
                       </Col>
                     ))}
-                  </>
+                  </Row>
+                ) : (
+                  <Row>
+                    {movies.map((movie) => (
+                      <Col className="mt-4 mb-4" key={movie.id} md={3}>
+                        <MovieCard
+                          movie={movie}
+                          user={user}
+                          setUser={setUser}
+                        />
+                      </Col>
+                    ))}
+                  </Row>
                 )}
               </>
             }
@@ -163,54 +198,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-
-/*
-  return (
-    <Row className="justify-content-md-center">
-      {!user ? (
-        <Col md={5}>
-          <LoginView
-            onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
-          />
-          or
-          <SignupView />
-        </Col>
-      ) : selectedMovie ? (
-        <Col md={8}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
-          />
-        </Col>
-      ) : movies.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {movies.map((movie) => (
-            <Col className="mb-5" key={movie.id} md={3}>
-              <MovieCard
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie);
-                }}
-              />
-            </Col>
-          ))}
-          <Button
-            className="mb-4"
-            variant="dark"
-            type="logout"
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-            }}
-          >
-            Logout
-          </Button>
-        </>
-      )}
-    </Row>
-  ); */
