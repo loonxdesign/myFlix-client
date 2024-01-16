@@ -10,10 +10,9 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   const [birthday, setBirthday] = useState('');
 
   //FAV MOVIES
-  /* 
-  let favMovie = user.favoriteMovies
-    ? movies.filter((movie) => user.favoriteMovies.includes(movie._id)) : [];
-  */
+  let favMovie = user.FavoriteMovies
+    ? movies.filter((movie) => user.FavoriteMovies.includes(movie.id))
+    : [];
 
   console.log('user ProfileView', user);
 
@@ -79,7 +78,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
   return (
     <>
       <Container>
-        <Row className="justify-content-center mt-4">
+        <Row className="justify-content-center mt-4 mb-4">
           <Col md={6}>
             <Card>
               <Card.Body>
@@ -93,7 +92,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
         </Row>
       </Container>
       <Container>
-        <Row className="justify-content-center mt-4">
+        <Row className="justify-content-center mt-4 mb-4">
           <Col md={6}>
             <h2 className="profile-title">Update info</h2>
             <Form className="my-profile" onSubmit={handleUpdate}>
@@ -152,20 +151,16 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             </Form>
           </Col>
         </Row>
-      </Container> 
-    </>
-  );
-};
-
-// PART OF RETURN WITH FAV MOVIES
-/*
-<Container>
-        <Row className="justify-content-md-center align-items-center">
+      </Container>
+      <Container>
+        <Row className="justify-content-center mt-4">
+          <h2 className="text-center profile-title mb-4">Favorite Movies</h2>
           {favMovie.map((movie) => {
             return (
               <Col
-                key={movie._id}
-                className="mb-4 justify-content-center align-items-center d-flex"
+                className="justify-content-center mt-4 mb-4"
+                md={3}
+                key={movie.id}
               >
                 <MovieCard
                   movie={movie}
@@ -177,5 +172,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             );
           })}
         </Row>
-      </Container>  
-*/
+      </Container>
+    </>
+  );
+};

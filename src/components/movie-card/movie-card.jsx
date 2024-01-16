@@ -1,111 +1,91 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './movie-card.scss';
 
-export const MovieCard = ({ movie }) => {
- /* 
+export const MovieCard = ({ movie, user, setUser }) => {
   // FAVORITE MOVIE
   const [isFavorite, setIsFavorite] = useState(false);
+  const storedToken = localStorage.getItem('token');
 
   useEffect(() => {
-    if (user.favoriteMovies && user.favoriteMovies.includes(movie._id)) {
+    if (user && user.FavoriteMovies && user.FavoriteMovies.includes(movie.id)) {
       setIsFavorite(true);
     }
-  }, [user]);
+  }, [user, movie]);
 
   const addFavoriteMovie = () => {
-    fetch("https://ghib-lix-e94c670e9f28.herokuapp.com/users/${user.name}/movies/${movie._id}", {
-      method: "POST",
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.log("Failed to add fav book");
-        }
-      })
+    fetch(
+      `https://ghib-lix-e94c670e9f28.herokuapp.com/users/${user.Username}/movies/${movie.id}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+    )
+      .then((response) =>
+        response.ok ? response.json() : console.log('Failed to add fav movie')
+      )
       .then((user) => {
         if (user) {
-          alert("successfully added to favorites");
-          localStorage.setItem("user", JSON.stringify(user));
+          alert('Successfully added to favorites');
+          localStorage.setItem('user', JSON.stringify(user));
           setUser(user);
           setIsFavorite(true);
         }
       })
-      .catch((error) => {
-        alert(error);
-      });
+      .catch((error) => alert(error));
   };
 
-  const removeFavoriteBook = () => {
-    fetch("https://ghib-lix-e94c670e9f28.herokuapp.com/users/${user.name}/movies/${movie._id}", {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("Failed");
-        }
-      })
+  const removeFavoriteMovie = () => {
+    fetch(
+      `https://ghib-lix-e94c670e9f28.herokuapp.com/users/${user.Username}/movies/${movie.id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+    )
+      .then((response) => (response.ok ? response.json() : alert('Failed')))
       .then((user) => {
         if (user) {
-          alert("successfully deleted from favorites");
-          localStorage.setItem("user", JSON.stringify(user));
+          alert('Successfully deleted from favorites');
+          localStorage.setItem('user', JSON.stringify(user));
           setUser(user);
           setIsFavorite(false);
         }
       })
-      .catch((error) => {
-        alert(error);
-      });
+      .catch((error) => alert(error));
   };
-}
 
-
-  WITH FAV BUTTONS
   return (
     <Card className="h-100">
-      <Card.Img variant="top" src={book.image} />
+      <Card.Img variant="top" src={movie.imagePath} />
       <Card.Body>
-        <Card.Title>{book.title}</Card.Title>
-        <Card.Text>{book.author}</Card.Text>
-        <Link to={`/books/${encodeURIComponent(book.id)}`}>
+        <Card.Title>{movie.title}</Card.Title>
+        <Card.Text>{movie.author}</Card.Text>
+        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button variant="link">Open</Button>
         </Link>
 
         <Card.Body className="favorite-btns">
           {!isFavorite ? (
-            <Button className="fav-btn" onClick={addFavoriteBook}>
+            <Button id="fav-button" className="fav-btn" onClick={addFavoriteMovie}>
               +
             </Button>
           ) : (
-            <Button className="fav-btn" onClick={removeFavoriteBook}>
+            <Button id="fav-button" className="fav-btn" onClick={removeFavoriteMovie}>
               -
             </Button>
           )}
         </Card.Body>
       </Card.Body>
     </Card>
-  ); 
- */ 
-
-  
-  // WITHOUT FAV BUTTONS
-  return (
-    <Card className="h-100">
-      <Card.Img variant="top" src={movie.imagePath} />
-      <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button variant="link">Open</Button>
-        </Link>
-      </Card.Body>
-    </Card>
   );
 };
-
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
@@ -118,9 +98,11 @@ MovieCard.propTypes = {
       birth: PropTypes.string,
       death: PropTypes.string,
     }),
-    genres: PropTypes.shape({
-      name: PropTypes.string,
-      description: PropTypes.string,
-    }),
-  }).isRequired,
+  }),
+  genres: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  user: PropTypes.object.isRequired,
+  setUser: PropTypes.func.isRequired,
 };

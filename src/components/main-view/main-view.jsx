@@ -53,6 +53,7 @@ export const MainView = () => {
       });
   }, [token]);
 
+  // SEARCH BAR
   const filteredMovies = movies.filter((movie) => {
     if (searchQuery) {
       return movie.title.toLowerCase().includes(searchQuery.toLowerCase());
