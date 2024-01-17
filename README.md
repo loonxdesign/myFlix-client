@@ -21,7 +21,7 @@ existing server-side code (REST API and database)
 
 • Allows users to add a movie to their list of favorites
 
-### ### Login view
+### Login view
 • Allows users to log in with a username and password
 Signup view
 
@@ -40,13 +40,13 @@ Signup view
 
 # Project dependencies
 
-• React
-
-• Node.js
+• MongoDB
 
 • Express
 
-• MongoDB
+• React
+
+• Node.js
 
 • Bootstrap
 
