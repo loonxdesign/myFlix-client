@@ -1,3 +1,8 @@
+#button {
+  margin: 0;
+  padding: 0;
+}
+
 .back-button {
   color: #f5f5f5;
   background-color: #9b53ff;
@@ -13250,4 +13255,4 @@ textarea.form-control-lg {
   color: #4682b4;
 }
 
-/*# sourceMappingURL=index.5f1df611.css.map */
+/*# sourceMappingURL=index.e3f97e84.css.map */
