@@ -6,7 +6,7 @@ existing server-side code (REST API and database)
 # Essential Views & Features
 
 ### Main view
-• Returns ALL movies to the user (each movie item with an image, title, and description)
+• Returns ALL movies to the user 
 
 • Filtering the list of movies with a “search” feature
 
