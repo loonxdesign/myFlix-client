@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { BookmarkHeart, BookmarkHeartFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
@@ -66,22 +67,17 @@ export const MovieCard = ({ movie, user, setUser }) => {
       <Card.Img variant="top" src={movie.imagePath} />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.author}</Card.Text>
+        <Card.Text>{movie.director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button variant="link">Open</Button>
+          <Button id="button" variant="link">Open</Button>
         </Link>
-
-        <Card.Body className="favorite-btns">
+        <div className="position-relative .d-inline-block mt-4">
           {!isFavorite ? (
-            <Button id="fav-button" className="fav-btn" onClick={addFavoriteMovie}>
-              +
-            </Button>
+            <BookmarkHeart size={30} onClick={addFavoriteMovie} />
           ) : (
-            <Button id="fav-button" className="fav-btn" onClick={removeFavoriteMovie}>
-              -
-            </Button>
+            <BookmarkHeartFill size={30} onClick={removeFavoriteMovie} />
           )}
-        </Card.Body>
+        </div>
       </Card.Body>
     </Card>
   );
