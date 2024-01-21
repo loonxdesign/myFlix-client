@@ -69,14 +69,18 @@ export const MovieCard = ({ movie, user, setUser }) => {
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button id="button" variant="link">Open</Button>
+          <Button id="button" variant="link">
+            Open
+          </Button>
         </Link>
         <div className="position-relative .d-inline-block mt-4">
-          {!isFavorite ? (
-            <BookmarkHeart size={30} onClick={addFavoriteMovie} />
-          ) : (
-            <BookmarkHeartFill size={30} onClick={removeFavoriteMovie} />
-          )}
+          <Link>
+            {!isFavorite ? (
+              <BookmarkHeart size={30} onClick={addFavoriteMovie} />
+            ) : (
+              <BookmarkHeartFill size={30} onClick={removeFavoriteMovie} />
+            )}
+          </Link>
         </div>
       </Card.Body>
     </Card>
